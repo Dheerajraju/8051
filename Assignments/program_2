@@ -1,0 +1,43 @@
+//left shift the 8 led's one by one using 8051 @500 milliseconds 
+//note: 4 active leds  active low leds
+#include <reg51.h>
+#include "delay_ms.h"
+#define led p1
+void main()
+{
+  unsigned char bit_pos =0;
+  while(bit_pos <8)
+  {
+    led = (1<<bit_pos++) ^ 0x0f;                                      
+    delay_ms(500);
+  }
+}
+
+or we can write this program using bitwise operator
+
+#include <reg51.h>
+#include "delay_ms.h"
+#define led p1
+void main()
+{
+  while(1)
+  {
+  led = 0x0D; //0000 1101
+  delay_ms(500); 
+  led = 0x0B; //0000 1011
+  delay_ms(500); 
+  led = 0x07; //0000 0111
+  delay_ms(500);
+  led = 0x1f; //0001 1111
+  delay_ms(500);
+  led = 0x2f; 0010 1111
+  delay_ms(500);
+  led = 0x2f; //0010 1111
+  delay_ms(500);
+  led = 0x8f; //1000 1111
+  delay_ms(500);
+  }
+}
+
+
+
