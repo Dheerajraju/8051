@@ -1,0 +1,23 @@
+//write a ECP to blink the led's
+//note: 4 active-low led's and 4 active high led's
+#include<reg51.h>  //this header contains all the sfr address
+#include "delay_ms.h"
+#define al_led p1  //al_led -> active low led's port-1
+void main()
+{
+  while(1)
+  {
+    al_led = 0x5A; //0101 1010
+    delay_ms(500);
+    al_led = 0xA5; //1010 0101
+    delay_ms(500);
+  }
+}
+
+--AH_led--  --AL_led--
+7 6 5 4      3 2 1 0   
+0 1 0 1      1 0 1 0
+
+-AH_led--  --AL_led--
+7 6 5 4      3 2 1 0   
+1 0 1 0      0 1 0 1
